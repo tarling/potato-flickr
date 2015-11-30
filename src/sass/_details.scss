@@ -22,9 +22,14 @@
 	}
 	
 	.tags {
-		.label {
+		.tags-label {
 			display: inline-block;
 			color: black;
+			margin-bottom: 10px;
+		}
+		
+		ul {
+			padding-left: 0;
 		}
 	}
 	
