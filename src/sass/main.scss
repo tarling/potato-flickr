@@ -1,26 +1,24 @@
+@import "listing";
 @import "details";
 @import "tags";
 
+html, body {
+	height: 100%;
+}
+
 body {
-	padding: 50px;
+	padding: 20px 40px;
+	display: flex;
+	flex-direction: column;
 	
-	ul {
-		padding: 0;
-		
-		.media-left {
-			min-width: 240px + 10px;
-		}
-		
-		.item-author, .item-link, .item-date {
-			margin-right: 1em;
-		}
-		
-		.item-author, .item-link {
-			display: inline-block;
-		}
+	header {
+		height: 70px;
 	}
 	
-	
+	main {
+		flex-grow: 1;
+		overflow-y: auto;
+	}
 }
 
 @media only screen and (min-device-width: 800px) {
