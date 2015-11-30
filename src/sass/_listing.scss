@@ -7,6 +7,13 @@
 		
 	.media-left {
 		min-width: 240px + 10px;
+		text-align: end;
+	}
+	
+	.media-body {
+		border-left: 1px solid #cccccc;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 	
 	.item-author, .item-link, .item-date {
@@ -15,6 +22,10 @@
 	
 	.item-author, .item-link {
 		display: inline-block;
+	}
+	
+	.item-title {
+		font-size: 25px;
 	}
 }
 

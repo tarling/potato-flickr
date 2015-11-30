@@ -6,6 +6,7 @@ define(['./app'],function(app){
             getData:function(){
                 if (items)
                 {
+                    //if items has already been defined, reuse it
                     var deferred = $q.defer();
                     deferred.resolve(items);
                     return deferred.promise;
@@ -15,6 +16,7 @@ define(['./app'],function(app){
                         items = response.data.items.map(function(item){
                             //convert name to Date object so we can format it in the view
                             item.date_taken = new Date(item.date_taken);
+                            //unescape HTML
                             item.description = $sce.trustAsHtml(item.description);
                             item.tags = item.tags.split(" ");
                             return item;

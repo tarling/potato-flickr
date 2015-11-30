@@ -10,11 +10,12 @@ define([
 	
 		}]);
 
-      app.controller(
-        constants.detailsController,
-        ['$scope', '$routeParams','items', function($scope, $routeParams, items){
-
-          $scope.item = items[$routeParams.itemIdx];
-
-        }]);
+	app.controller(
+		constants.detailsController,
+		['$scope', '$routeParams','items', function($scope, $routeParams, items){
+	
+			//itemIdx is defined in routes configuration
+			$scope.item = items[$routeParams.itemIdx];
+	
+		}]);
 });
