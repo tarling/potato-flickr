@@ -1,19 +1,29 @@
 .listing {
 	padding: 0;
 	
-	li.media {
+	li {
 		margin: 0;
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 15px;
+		
+		.thumb {
+			min-width: 240px + 10px;
+			text-align: end;
+		}
+		
+		.thumb-desc {
+			border-left: 1px solid #cccccc;
+			margin-left: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			flex-grow: 1;
+			width: 0%;
+		}
 	}
 		
-	.media-left {
-		min-width: 240px + 10px;
-		text-align: end;
-	}
-	
-	.media-body {
-		border-left: 1px solid #cccccc;
-		padding-left: 10px;
-		padding-right: 10px;
+	.item-date {
+		margin-bottom: 3px;
 	}
 	
 	.item-author, .item-link, .item-date {
@@ -26,6 +36,9 @@
 	
 	.item-title {
 		font-size: 25px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    	white-space: nowrap;
 	}
 }
 
@@ -39,6 +52,11 @@
 		
 		.item-author {
 			float: left;
+		}
+		
+		.item-title {
+			overflow: visible;
+			white-space: normal;
 		}
 	
 	}
