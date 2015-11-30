@@ -1,3 +1,4 @@
+/* global Promise */
 require.config({
     "shim" : {
         "angularjs" : {
@@ -24,7 +25,7 @@ require( [
   ], function(angular) {
 
     var appName = 'myApp';
-    var app = angular.module(appName, ['ngRoute', 'allControllers', ]);
+    var app = angular.module(appName, ['ngRoute']);
 
     //from https://github.com/chrisiconolly/angular-all-ordinal-filters/blob/master/app/package/js/ordinal.js
     function getOrdinal(input) {
@@ -55,71 +56,57 @@ require( [
       $routeProvider.
       when("/list", {
         templateUrl: "partials/list.html",
-        controller:"ListController"
+        controller:"ListController",
+        resolve: {
+          items: function(dataService) {
+            return dataService.getData();
+          }
+        }
       }).
       when("/details/:itemIdx", {
         templateUrl: "partials/details.html",
-        controller:"DetailsController"
+        controller:"DetailsController",
+        resolve: {
+          items: function(dataService) {
+            return dataService.getData();
+          }
+        }
       }).
       otherwise({
         redirectTo: "/list"
       })
     }]);
     
-    
-    var allControllers = angular.module('allControllers', []);
-
-    /*controllers.controller(
-        'AppController',
-        ['$scope', '$http', function($scope, $http){
-
-          $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
+    app.factory("dataService", function($http, $sce){
+      return {
+        getData:function(){
+          return $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
             .then(function(response) {
-              $scope.items = response.data.items.map(function(item){
-                //convert name to Date object so we can format it in the view
-                item.date_taken = new Date(item.date_taken);
-                return item;
-              });
-          });
-
-
-        }]);*/
-        
-      allControllers.controller(
-        'ListController',
-        ['$scope', '$http', function($scope, $http){
-
-          console.log('ListController');
-          $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
-            .then(function(response) {
-              $scope.items = response.data.items.map(function(item){
-                //convert name to Date object so we can format it in the view
-                item.date_taken = new Date(item.date_taken);
-                return item;
-              });
-          });
-
-
-        }]);
-
-      allControllers.controller(
-        'DetailsController',
-        ['$scope', '$http', '$routeParams','$sce', function($scope, $http, $routeParams, $sce){
-
-          console.log('DetailsController');
-          $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
-            .then(function(response) {
-              var items = response.data.items.map(function(item){
+              return response.data.items.map(function(item){
                 //convert name to Date object so we can format it in the view
                 item.date_taken = new Date(item.date_taken);
                 item.description = $sce.trustAsHtml(item.description);
                 item.tags = item.tags.split(" ");
                 return item;
               });
-              
-              $scope.item = items[$routeParams.itemIdx];
           });
+        }
+      }
+    });
 
+     app.controller(
+        'ListController',
+        ['$scope', 'items', function($scope, items){
+
+          $scope.items = items;
+
+        }]);
+
+      app.controller(
+        'DetailsController',
+        ['$scope', '$routeParams','items', function($scope, $routeParams, items){
+
+          $scope.item = items[$routeParams.itemIdx];
 
         }]);
 

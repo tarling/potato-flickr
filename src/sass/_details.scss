@@ -1,0 +1,31 @@
+.details {
+	.back-link {
+		float: right;
+	}
+	
+	.item-meta {
+		div {
+			display: inline-block;
+			margin-right: 1em;
+		}
+	}
+	
+	.description {
+		//most of the description contents are redundant so hide them
+		p {
+			display: none;
+		}
+		//if there are three p tags, the last one contains a description so show it
+		p:nth-of-type(3) {
+			display: block;
+		}
+	}
+	
+	.tags {
+		.label {
+			display: inline-block;
+			color: black;
+		}
+	}
+	
+}
