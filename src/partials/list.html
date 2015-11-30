@@ -1,5 +1,5 @@
 <ul class="listing" ng-cloak="true">
-	<li class="media" ng-repeat="item in items">
+	<li class="media" ng-repeat="item in items | filter: {tags: query}">
 		<div class="media-left">
 			<a href="#/details/{{items.indexOf(item)}}">
 				<img ng-src="{{item.media.m}}" alt="{{item.title}}">
