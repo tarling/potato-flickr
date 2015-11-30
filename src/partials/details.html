@@ -1,0 +1,15 @@
+<div class="media">
+	<h2 class="item-title">{{item.title}}</h2>
+	<div class="item-meta">
+		<div class="item-author"><a href="https://www.flickr.com/photos/{{item.author_id}}">{{item.author | extractName}}</a></div>
+		<div class="item-date">Published: {{item.published | date: 'MMM yy'}}</div>
+	</div>
+	<div class="media-left">
+		<a href="#">
+			<img ng-src="{{item.media.m}}" alt="{{item.title}}">
+		</a>
+	</div>
+	<div class="media-body">
+		<div>Lorem ipsum etc</div>
+	</div>
+</div>

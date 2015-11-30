@@ -3,34 +3,43 @@ require.config({
         "angularjs" : {
           exports: "angular"
         }
+        ,"angular-route" : {
+          deps: ["angularjs"]
+        }
+        ,"angular-animate" : {
+          deps: ["angularjs"]
+        }
     }
     ,"paths": {
-      "angularjs": "../lib/angular"
+      "angularjs": "../lib/angular/angular"
+      ,"angular-route": "../lib/angular/angular-animate"
+      ,"angular-animate": "../lib/angular/angular-route"
     }
 });
 
 require( [
     "angularjs"
+    ,"angular-route"
+    ,"angular-animate"
   ], function(angular) {
-    var appName = 'myApp'; 
-    var app = angular.module(appName, []);
-    
-    
-    
+
+    var appName = 'myApp';
+    var app = angular.module(appName, ['ngRoute', 'allControllers', ]);
+
     //from https://github.com/chrisiconolly/angular-all-ordinal-filters/blob/master/app/package/js/ordinal.js
     function getOrdinal(input) {
       var n = input % 100;
       return n === 0 ? 'th' : (n < 11 || n > 13) ?
         ['st', 'nd', 'rd', 'th'][Math.min((n - 1) % 10, 3)] : 'th';
     }
-    
+
     app.filter('extractName', function(){
       var userNameRegExp = /nobody@flickr\.com \(([^)]*)\)/g;
       return function(name) {
         return name.replace(userNameRegExp, "$1");
       }
     });
-    
+
     app.filter('formatDate', function($filter){
       return function(dt) {
         //get date string as e.g. 3 Jan 2015
@@ -42,16 +51,28 @@ require( [
       }
     });
     
-    app.controller(
-        'appController',
+    app.config(["$routeProvider", function($routeProvider){
+      $routeProvider.
+      when("/list", {
+        templateUrl: "partials/list.html",
+        controller:"ListController"
+      }).
+      when("/details/:itemIdx", {
+        templateUrl: "partials/details.html",
+        controller:"DetailsController"
+      }).
+      otherwise({
+        redirectTo: "/list"
+      })
+    }]);
+    
+    
+    var allControllers = angular.module('allControllers', []);
+
+    /*controllers.controller(
+        'AppController',
         ['$scope', '$http', function($scope, $http){
-          
-          function update() {
-            if(!$scope.$$phase) {
-              $scope.$apply();
-            }
-          }
-          
+
           $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
             .then(function(response) {
               $scope.items = response.data.items.map(function(item){
@@ -60,9 +81,45 @@ require( [
                 return item;
               });
           });
-          
-          
-        }]);
+
+
+        }]);*/
         
+      allControllers.controller(
+        'ListController',
+        ['$scope', '$http', function($scope, $http){
+
+          console.log('ListController');
+          $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
+            .then(function(response) {
+              $scope.items = response.data.items.map(function(item){
+                //convert name to Date object so we can format it in the view
+                item.date_taken = new Date(item.date_taken);
+                return item;
+              });
+          });
+
+
+        }]);
+
+      allControllers.controller(
+        'DetailsController',
+        ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+          console.log('DetailsController');
+          $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
+            .then(function(response) {
+              var items = response.data.items.map(function(item){
+                //convert name to Date object so we can format it in the view
+                item.date_taken = new Date(item.date_taken);
+                return item;
+              });
+              
+              $scope.item = items[$routeParams.itemIdx];
+          });
+
+
+        }]);
+
     angular.bootstrap(document, [appName]);
   });

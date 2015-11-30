@@ -16,7 +16,7 @@ gulp.task('copy', ['copy-html', 'copy-js', 'copy-lib'], function() {
 });
 
 gulp.task('copy-html', function() {
-  gulp.src('./src/index.html', copyOptions)
+  gulp.src(['./src/index.html', './src/partials/**.html'], copyOptions)
     .pipe(gulp.dest(devPath));
 });
 
@@ -39,5 +39,5 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
   gulp.watch('./src/sass/**/*.scss', ['sass']);
   gulp.watch('./src/js/**', ['copy-js']);
-  gulp.watch('./src/index.html', ['copy-html']);
+  gulp.watch('./src/**/*.html', ['copy-html']);
 });
