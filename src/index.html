@@ -12,8 +12,8 @@
     <h1>Flickr Public Feed</h1>
   </header>
   <main>
-    <ul ng-cloak="true">
-      <li class="media" ng-repeat="item in items">
+    <ul class="list-group" ng-cloak="true">
+      <li class="media list-group-item" ng-repeat="item in items">
         <div class="media-left">
             <a href="#">
               <img ng-src="{{item.media.m}}" alt="{{item.title}}">
@@ -22,7 +22,7 @@
           <div class="media-body">
             <h4 class="media-heading">{{item.title}}</h4>
             <div class="item-date">Published {{item.published | date: 'MMM yy'}}</div>
-            <div class="item-author"><a href="https://www.flickr.com/photos/{{itemauthor_id}}">{{item.author}}</a></div>
+            <div class="item-author"><a href="https://www.flickr.com/photos/{{item.author_id}}">{{item.author | extractName}}</a></div>
             <div class="item-link"><a href="{{item.link}}">View on Flickr</a></div>
           </div>
       </li>
