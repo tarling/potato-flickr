@@ -6,7 +6,7 @@
 	
 	<div class="item-meta">
 		<div class="item-author"><a href="https://www.flickr.com/photos/{{item.author_id}}">{{item.author | extractName}}</a></div>
-		<div class="item-date">Published: {{item.published | date: 'MMM yy'}}</div>
+		<div class="item-date">Published: {{item.published | formatDate}}</div>
 	</div>
 	<div class="media-left">
 		<a href="{{item.link}}">

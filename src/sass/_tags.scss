@@ -1,0 +1,22 @@
+.tags li {
+	border-radius: 5px;
+    position: relative;
+    background-color: #cfd6d9;
+	padding: 3px 7px;
+	display: inline-block;
+	margin-right: 1em;
+	
+	&:hover {
+		background-color: #868d91;
+		a {
+			color: #ffffff;
+		}
+	}
+	
+	a {		
+		color: #212124;
+	}
+	a:hover {		
+		text-decoration: none;
+	}
+}
