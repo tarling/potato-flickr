@@ -24,10 +24,14 @@ define([
 
 	app.controller(
 		constants.detailsController,
-		['$scope', '$routeParams','items', function($scope, $routeParams, items){
+		['$scope', '$location', '$routeParams','items', function($scope, $location, $routeParams, items){
 	
 			//itemIdx is defined in routes configuration
 			$scope.item = items[$routeParams.itemIdx];
+			
+			$scope.goBack = function() {
+				$location.path('list');
+			}
 	
 		}]);
 });
