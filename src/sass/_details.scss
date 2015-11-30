@@ -4,8 +4,12 @@
 		margin: 0 0 10px 10px;
 	}
 	
+	.item-title {
+		margin-top: 0;
+	}
+	
 	.item-meta {
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 
 		div {
 			display: inline-block;
@@ -13,29 +17,37 @@
 		}
 	}
 	
-	.description {
-		//most of the description contents are redundant so hide them
-		p {
-			display: none;
-		}
-		//if there are three p tags, the last one contains a description so show it
-		p:nth-of-type(3) {
-			display: block;
+	.media-body{
+		
+		padding-left: 10px;
+		
+		.description {
+			//most of the description contents are redundant so hide them
+			p {
+				display: none;
+			}
+			//if there are three p tags, the last one contains a description so show it
+			p:nth-of-type(3) {
+				display: block;
+			}
+			
+			margin-bottom: 15px;
 		}
 		
-		margin-bottom: 15px;
+		.tags {
+			.tags-label {
+				display: inline-block;
+				color: black;
+				margin-bottom: 10px;
+			}
+			
+			ul {
+				padding-left: 0;
+			}
+		}
+		
 	}
 	
-	.tags {
-		.tags-label {
-			display: inline-block;
-			color: black;
-			margin-bottom: 10px;
-		}
-		
-		ul {
-			padding-left: 0;
-		}
-	}
+	
 	
 }
