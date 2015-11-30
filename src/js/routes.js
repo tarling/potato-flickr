@@ -6,6 +6,7 @@ define([
       when("/list", {
         templateUrl: "partials/list.html",
         controller: constants.listController,
+        bodyClass: 'list',
         resolve: {
           items: function(dataService) {
             return dataService.getData();
@@ -15,6 +16,7 @@ define([
       when("/details/:itemIdx", {
         templateUrl: "partials/details.html",
         controller: constants.detailsController,
+        bodyClass: 'details',
         resolve: {
           items: function(dataService) {
             return dataService.getData();

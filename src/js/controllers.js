@@ -3,6 +3,18 @@ define([
 	, './constants'
 ],function(app, constants){
 	app.controller(
+		constants.appController,
+		['$scope', '$route', function($scope, $route){
+	
+			$scope.$on('$routeChangeSuccess', function(event, newVal, oldVal) {
+				if (oldVal !== newVal) {
+					$scope.routeClassName = $route.current.bodyClass;
+				}
+			});
+	
+		}]);
+		
+	app.controller(
 		constants.listController,
 		['$scope', 'items', function($scope, items){
 	

@@ -3,5 +3,6 @@ define(function(){
 		appName: 'potatoFlickrApp'
 		, listController: 'ListController'
 		, detailsController: 'DetailsController'
+		, appController: 'AppController'
 	}
 });
