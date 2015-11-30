@@ -20,95 +20,14 @@ require.config({
 
 require( [
     "angularjs"
-    ,"angular-route"
-    ,"angular-animate"
-  ], function(angular) {
+    ,"./constants"
+    ,"./app"
+    ,"./controllers"
+    ,"./data-service"
+    ,"./filters"
+    ,"./routes"
+  ], function(angular, constants) {
 
-    var appName = 'myApp';
-    var app = angular.module(appName, ['ngRoute']);
+    angular.bootstrap(document, [constants.appName]);
 
-    //from https://github.com/chrisiconolly/angular-all-ordinal-filters/blob/master/app/package/js/ordinal.js
-    function getOrdinal(input) {
-      var n = input % 100;
-      return n === 0 ? 'th' : (n < 11 || n > 13) ?
-        ['st', 'nd', 'rd', 'th'][Math.min((n - 1) % 10, 3)] : 'th';
-    }
-
-    app.filter('extractName', function(){
-      var userNameRegExp = /nobody@flickr\.com \(([^)]*)\)/g;
-      return function(name) {
-        return name.replace(userNameRegExp, "$1");
-      }
-    });
-
-    app.filter('formatDate', function($filter){
-      return function(dt) {
-        //get date string as e.g. 3 Jan 2015
-        var dateStr = $filter('date')(dt, 'd MMM yyyy HH:mm');
-        var dateParts = dateStr.split(" ");
-        var day = dateParts[0];
-        dateParts[0] = day + getOrdinal(day);
-        return dateParts.slice(0,3).join(" ") + " at " + dateParts[3];
-      }
-    });
-    
-    app.config(["$routeProvider", function($routeProvider){
-      $routeProvider.
-      when("/list", {
-        templateUrl: "partials/list.html",
-        controller:"ListController",
-        resolve: {
-          items: function(dataService) {
-            return dataService.getData();
-          }
-        }
-      }).
-      when("/details/:itemIdx", {
-        templateUrl: "partials/details.html",
-        controller:"DetailsController",
-        resolve: {
-          items: function(dataService) {
-            return dataService.getData();
-          }
-        }
-      }).
-      otherwise({
-        redirectTo: "/list"
-      })
-    }]);
-    
-    app.factory("dataService", function($http, $sce){
-      return {
-        getData:function(){
-          return $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
-            .then(function(response) {
-              return response.data.items.map(function(item){
-                //convert name to Date object so we can format it in the view
-                item.date_taken = new Date(item.date_taken);
-                item.description = $sce.trustAsHtml(item.description);
-                item.tags = item.tags.split(" ");
-                return item;
-              });
-          });
-        }
-      }
-    });
-
-     app.controller(
-        'ListController',
-        ['$scope', 'items', function($scope, items){
-
-          $scope.items = items;
-
-        }]);
-
-      app.controller(
-        'DetailsController',
-        ['$scope', '$routeParams','items', function($scope, $routeParams, items){
-
-          $scope.item = items[$routeParams.itemIdx];
-
-        }]);
-
-    angular.bootstrap(document, [appName]);
   });
