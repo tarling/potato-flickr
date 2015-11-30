@@ -15,7 +15,29 @@ body {
 		.item-author, .item-link {
 			display: inline-block;
 		}
-		
+	}
+	
+	.details {
+		.back-link {
+			float: right;
+		}
+		p {
+			display: none;
+		}
+		p:nth-of-type(3) {
+			display: block;
+		}
+		.tags {
+			.label, li {
+				display: inline-block;
+			}
+			li {
+				margin-right: 1em;
+			}
+			.label {
+				color: black;
+			}
+		}
 		
 	}
 }

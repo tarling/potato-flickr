@@ -1,15 +1,27 @@
-<div class="media">
-	<h2 class="item-title">{{item.title}}</h2>
+<div class="details media">
+	<div>
+		<div class="back-link"><a href="#/list">Back</a></div>
+		<h2 class="item-title"><a href="{{item.link}}">{{item.title}}</a></h2>
+	</div>
+	
 	<div class="item-meta">
 		<div class="item-author"><a href="https://www.flickr.com/photos/{{item.author_id}}">{{item.author | extractName}}</a></div>
 		<div class="item-date">Published: {{item.published | date: 'MMM yy'}}</div>
 	</div>
 	<div class="media-left">
-		<a href="#">
+		<a href="{{item.link}}">
 			<img ng-src="{{item.media.m}}" alt="{{item.title}}">
 		</a>
 	</div>
 	<div class="media-body">
-		<div>Lorem ipsum etc</div>
+		<div class="description" ng-bind-html="item.description"></div>
+		<div class="tags">
+			<div class="label">Tags:</div>
+			<ul>
+				<li ng-repeat="tag in item.tags">
+					<a href="https://www.flickr.com/photos/tags/{{tag}}">{{tag}}</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

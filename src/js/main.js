@@ -104,7 +104,7 @@ require( [
 
       allControllers.controller(
         'DetailsController',
-        ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+        ['$scope', '$http', '$routeParams','$sce', function($scope, $http, $routeParams, $sce){
 
           console.log('DetailsController');
           $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
@@ -112,6 +112,8 @@ require( [
               var items = response.data.items.map(function(item){
                 //convert name to Date object so we can format it in the view
                 item.date_taken = new Date(item.date_taken);
+                item.description = $sce.trustAsHtml(item.description);
+                item.tags = item.tags.split(" ");
                 return item;
               });
               
