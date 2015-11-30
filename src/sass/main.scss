@@ -3,5 +3,31 @@ body {
 	
 	ul {
 		padding: 0;
+		
+		.media-left {
+			min-width: 240px + 10px;
+		}
+		
+		.item-author, .item-link, .item-date {
+			margin-right: 1em;
+		}
+		
+		.item-author, .item-link {
+			display: inline-block;
+		}
+		
+		
+	}
+}
+
+@media only screen and (min-device-width: 800px) {
+
+	.item-date {
+		display: inline-block;
+	}
+	
+	.item-author {
+		float: left;
+		margin-right: 1em;
 	}
 }
