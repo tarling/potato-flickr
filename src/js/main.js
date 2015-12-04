@@ -28,7 +28,7 @@ require( [
     ,"./controllers"
     ,"./data-service"
     ,"./filters"
-    ,"./routes",
+    ,"./routes"
     ,"./directives"
   ], function(angular, constants) {
 
