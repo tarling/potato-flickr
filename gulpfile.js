@@ -17,8 +17,8 @@ var copyOptions = {
 }
 
 gulp.task('default', [
-  'clean'
-  ,'set-deploy-path'
+  'set-deploy-path'
+  ,'clean'
   , 'rjs'
   , 'convert-html'
   , 'copy-partials'
@@ -27,8 +27,8 @@ gulp.task('default', [
 ], function() {});
 
 gulp.task('dev', [
-  'clean'
-  ,'set-dev-path'
+  'set-dev-path'
+  ,'clean'
   , 'copy'
   , 'sass'
   , 'watch'
@@ -43,7 +43,7 @@ gulp.task('set-deploy-path', function(){
   output = deployPath;
 });
 
-gulp.task('clean', function(cb){
+gulp.task('clean', ['set-dev-path'], function(cb){
   del(output).then(function(paths){
     cb()
   });
