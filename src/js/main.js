@@ -29,7 +29,7 @@ require( [
     ,"./data-service"
     ,"./filters"
     ,"./routes",
-    ,"./directives",
+    ,"./directives"
   ], function(angular, constants) {
 
     angular.bootstrap(document, [constants.appName]);
