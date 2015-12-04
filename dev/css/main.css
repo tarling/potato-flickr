@@ -1,6 +1,9 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,700italic,400italic,300italic,300);
 @import url(http://css-spinners.com/css/spinner/three-quarters.css);
+body.list main {
+  overflow-y: auto; }
+
 .listing {
   padding: 0; }
   .listing li {
@@ -40,7 +43,7 @@
     text-overflow: ellipsis;
     white-space: nowrap; }
 
-@media only screen and (min-width: 800px) {
+@media (min-width: 800px) {
   .listing .item-date {
     display: inline-block; }
   .listing .item-author {
@@ -48,6 +51,13 @@
   .listing .item-title {
     overflow: visible;
     white-space: normal; } }
+
+@media (max-width: 360px) {
+  .listing .thumb-desc {
+    display: none; } }
+
+.details .tag-search {
+  display: none; }
 
 .details .back-link {
   float: right;
@@ -80,6 +90,10 @@
       margin-bottom: 10px; }
     .details .media-body .tags ul {
       padding-left: 0; }
+
+@media (max-width: 360px) {
+  .media-body, .media-left, .media-right {
+    display: inline; } }
 
 .tags li {
   border-radius: 5px;
@@ -128,10 +142,14 @@ body {
   body main {
     -ms-flex-grow: 1;
     -webkit-flex-grow: 1;
-    flex-grow: 1;
-    overflow-y: auto; }
+    flex-grow: 1; }
   body .item-date {
     font-weight: 100; }
 
-body.details .tag-search {
-  display: none; }
+@media (max-width: 360px) {
+  body header {
+    margin-bottom: 135px; }
+    body header h1 {
+      font-size: 30px; }
+    body header .tag-search {
+      float: none; } }

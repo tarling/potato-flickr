@@ -38,7 +38,6 @@ body {
 		-ms-flex-grow: 1;
 		-webkit-flex-grow: 1;
 		flex-grow: 1;
-		overflow-y: auto;
 	}
 	
 	.item-date {
@@ -46,8 +45,18 @@ body {
 	}
 }
 
-body.details {
-	.tag-search {
-		display: none;
+@media (max-width: 360px) {
+	body {
+		header {
+			margin-bottom: 135px;
+			
+			h1 {
+				font-size: 30px;
+			}
+			
+			.tag-search {
+				float: none;	
+			}
+		}
 	}
 }

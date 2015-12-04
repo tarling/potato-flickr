@@ -1,4 +1,9 @@
 .details {
+	
+	.tag-search {
+		display: none;
+	}
+	
 	.back-link {
 		float: right;
 		margin: 0 0 10px 10px;
@@ -53,7 +58,10 @@
 		}
 		
 	}
-	
-	
-	
+}
+
+@media (max-width: 360px) {
+	.media-body, .media-left, .media-right {
+		display: inline;
+	}
 }

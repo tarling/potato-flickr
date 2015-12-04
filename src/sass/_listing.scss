@@ -1,3 +1,7 @@
+body.list main {
+	overflow-y: auto;
+}
+
 .listing {
 	padding: 0;
 	
@@ -54,7 +58,7 @@
 	}
 }
 
-@media only screen and (min-width: 800px) {
+@media (min-width: 800px) {
 	
 	.listing {
 
@@ -71,5 +75,13 @@
 			white-space: normal;
 		}
 	
+	}
+}
+
+@media (max-width: 360px) {
+	.listing {
+		.thumb-desc {
+			display: none;		
+		}
 	}
 }
