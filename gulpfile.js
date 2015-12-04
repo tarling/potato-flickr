@@ -2,7 +2,9 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     rjs = require('gulp-requirejs'),
     uglify = require('gulp-uglify'),
-    htmlreplace = require('gulp-html-replace');
+    htmlreplace = require('gulp-html-replace'),
+    minifyHTML = require('gulp-minify-html'),
+    minifyCss = require('gulp-minify-css');
 
 var src = "./src/";
 var devPath = "./dev/";
@@ -13,7 +15,7 @@ var copyOptions = {
   base: src
 }
 
-gulp.task('default', ['set-deploy-path', 'rjs', 'convert-html', 'copy-partials', 'sass'], function() {
+gulp.task('default', ['set-deploy-path', 'rjs', 'convert-html', 'copy-partials', 'compress-css'], function() {
 });
 
 gulp.task('dev', ['set-dev-path', 'copy', 'sass', 'watch'], function() {
@@ -41,6 +43,7 @@ gulp.task('copy-html', function() {
 
 gulp.task('copy-partials', function() {
   gulp.src(src + 'partials/**.html', copyOptions)
+    .pipe(minifyHTML())
     .pipe(gulp.dest(output));
 });
 
@@ -55,7 +58,7 @@ gulp.task('copy-lib', function() {
 });
 
 gulp.task('sass', function () {
-  gulp.src(src + 'sass/*.scss')
+  return gulp.src(src + 'sass/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(output + 'css'));
 });
@@ -83,5 +86,12 @@ gulp.task('convert-html', function() {
     .pipe(htmlreplace({
       'app-js': 'app.js'
     }))
+    .pipe(minifyHTML({conditionals:false}))
     .pipe(gulp.dest(output));
+});
+
+gulp.task('compress-css', ['sass'], function() {
+  gulp.src(output + 'css/*.*')
+    .pipe(minifyCss({advanced:false}))
+    .pipe(gulp.dest(output + 'css/'));
 });

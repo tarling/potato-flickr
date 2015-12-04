@@ -1,0 +1,28 @@
+<div class="details well media">
+	<div>
+		<button ng-click="goBack()" type="button" class="back-link btn btn-primary btn-lg"><i class="glyphicon glyphicon-chevron-left"></i>Back</button>
+		<h2 class="item-title"><a href="{{item.link}}">{{item.title}}</a></h2>
+	</div>
+	
+	<div class="item-meta">
+		<div class="item-author"><a href="https://www.flickr.com/photos/{{item.author_id}}">{{item.author | extractName}}</a></div>
+		<div class="item-date">Published: {{item.published | formatDate}}</div>
+	</div>
+	<div class="media-left">
+		<a href="{{item.link}}">
+			<img ng-src="{{item.media.m}}" alt="{{item.title}}">
+		</a>
+	</div>
+	<div class="media-body">
+		<div class="description" ng-bind-html="item.description"></div>
+		<div plusone="{{item.link}}"></div>
+		<div class="tags well">
+			<div class="tags-label">Tags:</div>
+			<ul>
+				<li ng-repeat="tag in item.tags">
+					<a href="https://www.flickr.com/photos/tags/{{tag}}">{{tag}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
