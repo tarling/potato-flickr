@@ -23,6 +23,7 @@ define(['./app', './constants'],function(app, constants){
                             return item;
                         });
                         
+                        //notify app that the data has loaded
                         $rootScope.$broadcast(constants.dataLoaded);
                         
                         return items;

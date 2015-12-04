@@ -1,4 +1,3 @@
-/* global Promise */
 require.config({
     "shim" : {
         "angularjs" : {
