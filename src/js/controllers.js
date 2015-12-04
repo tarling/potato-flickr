@@ -4,12 +4,16 @@ define([
 ],function(app, constants){
 	app.controller(
 		constants.appController,
-		['$scope', '$route', function($scope, $route){
+		['$scope', '$route', '$rootScope', function($scope, $route, $rootScope){
 	
 			$scope.$on('$routeChangeSuccess', function(event, newVal, oldVal) {
 				if (oldVal !== newVal) {
 					$scope.routeClassName = $route.current.bodyClass;
 				}
+			});
+			
+			$rootScope.$on(constants.dataLoaded, function() {
+				$scope.loaded = true;
 			});
 	
 		}]);

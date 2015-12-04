@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/main.css">
   <!--[if lte IE 9]>
 	<link rel="stylesheet" type="text/css" href="ie9.css" />
+  <script src="lib/placeholders.min.js"></script>
   <![endif]-->
   <title>Flickr Public Feed</title>
 </head>
@@ -16,7 +17,13 @@
     <input class="tag-search" ng-model="query" placeholder="Search for tags" autofocus>
     <h1>Flickr Public Feed</h1>
   </header>
-  <main ng-view>
+  <main>
+    <div class="loader" ng-hide="loaded">
+      <div class="three-quarters-loader">
+        Loading…
+      </div>
+    </div>
+    <div ng-view></div>
   </main>
  
   <script data-main="js/main.js" src="lib/require.js"></script>

@@ -4,5 +4,6 @@ define(function(){
 		, listController: 'ListController'
 		, detailsController: 'DetailsController'
 		, appController: 'AppController'
+		, dataLoaded: 'dataLoaded'
 	}
 });

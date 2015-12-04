@@ -17,7 +17,7 @@ define([
       }
     });
 
-    app.filter('formatDate', function($filter){
+    app.filter('formatDate', ['$filter', function($filter){
       //format date as e.g. 3rd Jan 2015
       return function(dt) {
         //get date string using angular date filter e.g. 3 Jan 2015
@@ -28,6 +28,6 @@ define([
         dateParts[0] = day + getOrdinal(day);
         return dateParts.slice(0,3).join(" ") + " at " + dateParts[3];
       }
-    });
+    }]);
 	
 });

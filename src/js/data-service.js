@@ -1,6 +1,7 @@
-define(['./app'],function(app){
+define(['./app', './constants'],function(app, constants){
 	
-	app.factory("dataService", function($http, $sce, $q, $timeout){
+	app.factory("dataService", 
+        ['$http', '$sce', '$q', '$timeout', '$rootScope', function($http, $sce, $q, $timeout, $rootScope){
         var items;
         return {
             getData:function(){
@@ -21,11 +22,14 @@ define(['./app'],function(app){
                             item.tags = item.tags.split(" ");
                             return item;
                         });
+                        
+                        $rootScope.$broadcast(constants.dataLoaded);
+                        
                         return items;
                     });
                 }
             }
         }
-    });
+    }]);
 	
 });
