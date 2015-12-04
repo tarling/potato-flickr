@@ -11,6 +11,12 @@
 		flex-direction: row;
 		margin-bottom: 15px;
 		
+		&.no-match {
+			font-size: 25px;
+			padding-top: 1em;
+			color: #aaaaaa;
+		}
+		
 		.thumb {
 			min-width: 240px + 10px;
 			text-align: end;
