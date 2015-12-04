@@ -1,6 +1,7 @@
 define([
   './app'
-  , './constants'],function(app, constants){
+  , './constants'
+],function(app, constants){
 	app.config(["$routeProvider", function($routeProvider){
       $routeProvider.
       when("/list", {
@@ -8,9 +9,9 @@ define([
         controller: constants.listController,
         bodyClass: 'list',
         resolve: {
-          items: function(dataService) {
+          items: ['dataService', function(dataService) {
             return dataService.getData();
-          }
+          }]
         }
       }).
       when("/details/:itemIdx", {
@@ -18,9 +19,9 @@ define([
         controller: constants.detailsController,
         bodyClass: 'details',
         resolve: {
-          items: function(dataService) {
+          items: ['dataService', function(dataService) {
             return dataService.getData();
-          }
+          }]
         }
       }).
       otherwise({

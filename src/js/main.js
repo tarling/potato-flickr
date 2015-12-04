@@ -6,18 +6,15 @@ require.config({
         ,"angular-route" : {
           deps: ["angularjs"]
         }
-        ,"angular-animate" : {
-          deps: ["angularjs"]
-        }
         ,"gapi" : {
           exports: "gapi"
         }
     }
     ,"paths": {
       "angularjs": "../lib/angular/angular"
-      ,"angular-route": "../lib/angular/angular-animate"
-      ,"angular-animate": "../lib/angular/angular-route"
+      ,"angular-route": "../lib/angular/angular-route"
       ,"gapi" : "https://apis.google.com/js/platform"
+      ,"requireLib" : "../lib/require"
     }
 });
 
