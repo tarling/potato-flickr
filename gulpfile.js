@@ -109,7 +109,7 @@ gulp.task('convert-html', function() {
     .pipe(htmlreplace({
       'app-js': 'app.js'
     }))
-    .pipe(minifyHTML({conditionals:false}))
+    .pipe(minifyHTML({conditionals:true}))
     .pipe(gulp.dest(output));
 });
 
