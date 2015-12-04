@@ -9,11 +9,15 @@ require.config({
         ,"angular-animate" : {
           deps: ["angularjs"]
         }
+        ,"gapi" : {
+          exports: "gapi"
+        }
     }
     ,"paths": {
       "angularjs": "../lib/angular/angular"
       ,"angular-route": "../lib/angular/angular-animate"
       ,"angular-animate": "../lib/angular/angular-route"
+      ,"gapi" : "https://apis.google.com/js/platform"
     }
 });
 
@@ -24,9 +28,10 @@ require( [
     ,"./controllers"
     ,"./data-service"
     ,"./filters"
-    ,"./routes"
+    ,"./routes",
+    ,"./directives",
   ], function(angular, constants) {
 
     angular.bootstrap(document, [constants.appName]);
-
+    
   });
