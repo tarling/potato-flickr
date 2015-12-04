@@ -31,4 +31,10 @@ require( [
 
     angular.bootstrap(document, [constants.appName]);
     
+    /*
+    activate the Placeholders polyfill
+    if it was loaded (via an IE conditional tag)
+    */
+    if (window.Placeholders) window.Placeholders.enable();
+    
   });
