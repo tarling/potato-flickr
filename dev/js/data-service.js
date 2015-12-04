@@ -1,6 +1,7 @@
 define(['./app', './constants'],function(app, constants){
 	
-    var DataService = function($http, $sce, $q, $timeout, $rootScope){
+	app.factory("dataService", 
+        ['$http', '$sce', '$q', '$timeout', '$rootScope', function($http, $sce, $q, $timeout, $rootScope){
         var items;
         return {
             getData:function(){
@@ -30,9 +31,6 @@ define(['./app', './constants'],function(app, constants){
                 }
             }
         }
-    }
-    DataService.$inject = ['$http', '$sce', '$q', '$timeout', '$rootScope']
-    
-	app.factory("dataService", DataService);
+    }]);
 	
 });

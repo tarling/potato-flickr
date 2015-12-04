@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/tarling/potato-flickr",
   "dependencies": {
+    "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-html-replace": "^1.5.5",
     "gulp-minify-css": "^1.2.2",
