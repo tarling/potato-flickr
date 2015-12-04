@@ -1,6 +1,6 @@
 define(['./app', './constants'],function(app, constants){
 	
-	app.factory("dataService", 
+	app.factory(constants.dataService, 
         ['$http', '$sce', '$q', '$timeout', '$rootScope', function($http, $sce, $q, $timeout, $rootScope){
         var items;
         return {

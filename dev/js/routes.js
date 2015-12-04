@@ -9,7 +9,7 @@ define([
         controller: constants.listController,
         bodyClass: 'list',
         resolve: {
-          items: ['dataService', function(dataService) {
+          items: [constants.dataService, function(dataService) {
             return dataService.getData();
           }]
         }
@@ -19,7 +19,7 @@ define([
         controller: constants.detailsController,
         bodyClass: 'details',
         resolve: {
-          items: ['dataService', function(dataService) {
+          items: [constants.dataService, function(dataService) {
             return dataService.getData();
           }]
         }

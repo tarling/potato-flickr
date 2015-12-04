@@ -5,5 +5,6 @@ define(function(){
 		, detailsController: 'DetailsController'
 		, appController: 'AppController'
 		, dataLoaded: 'dataLoaded'
+		, dataService: 'dataService'
 	}
 });
