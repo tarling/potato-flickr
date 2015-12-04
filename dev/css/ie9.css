@@ -2,4 +2,5 @@
   display: table-cell; }
 
 .listing li .thumb-desc {
-  display: table-cell; }
+  display: table-cell;
+  width: auto; }
