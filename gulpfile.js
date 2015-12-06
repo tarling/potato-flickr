@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 
 var src = "./src/";
 var devPath = "./dev/";
-var deployPath = "./deploy/";
+var deployPath = "./dist/";
 var output;
 
 var copyOptions = {

@@ -1,7 +1,7 @@
 # potato-flickr
 A single page app which allows a user to browse through photos available via Flickr's public feed. 
 
-The app can be viewed [here](http://tarling.github.io/potato-flickr/deploy/).
+The app can be viewed [here](http://tarling.github.io/potato-flickr/dist/).
 
 ## Overview
 
@@ -24,7 +24,7 @@ The app has been tested on Safari (OS X), Chrome, Firefox, Edge, IE 10, IE 9, Sa
 
 The uncompressed JS, SCSS and HTML files which are copied to the target build folders during build
 
-*/deploy*
+*/dist*
 
 A minified version of the app ready to be deployed to a production server
 
@@ -38,7 +38,7 @@ After installing node and npm, run `npm install` from the project directory to d
 
 Run `gulp dev` to build an uncompressed version to the `/dev` folder. 
 
-Run `gulp` to build a minified version to the `/deploy` folder.
+Run `gulp` to build a minified version to the `/dist` folder.
 
 For both builds, you can then run `index.html` in the target build folder.
 
