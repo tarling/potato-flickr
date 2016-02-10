@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-minify-html'),
     minifyCss = require('gulp-minify-css'),
     del = require('del'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    bower = require('gulp-bower');
 
 var src = "./src/";
 var devPath = "./dev/";
@@ -17,9 +18,13 @@ var copyOptions = {
   base: src
 }
 
+gulp.task('bower', function() {
+  return bower();
+});
+
 gulp.task('default', function(callback) {
   runSequence('set-deploy-path',
-            'clean',
+            ['clean', 'bower'],
             ['rjs'
               , 'convert-html'
               , 'copy-partials'
@@ -30,7 +35,7 @@ gulp.task('default', function(callback) {
 
 gulp.task('dev', function(callback) {
   runSequence('set-dev-path',
-            'clean',
+            ['clean', 'bower'],
             ['copy'
               , 'copy-ie-js'
               , 'sass'
