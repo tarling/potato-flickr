@@ -32,6 +32,7 @@ gulp.task('dev', function(callback) {
   runSequence('set-dev-path',
             'clean',
             ['copy'
+              , 'copy-ie-js'
               , 'sass'
               , 'watch'],
             callback);
@@ -49,7 +50,7 @@ gulp.task('clean', function(){
   return del(output);
 });
 
-gulp.task('copy', ['copy-html', 'copy-js', 'copy-lib'], function() {});
+gulp.task('copy', ['copy-html', 'copy-js'], function() {});
 
 gulp.task('copy-html', function() {
   gulp.src([
@@ -70,14 +71,11 @@ gulp.task('copy-js', function() {
     .pipe(gulp.dest(output));
 });
 
-gulp.task('copy-lib', function() {
-  gulp.src(src + 'lib/**/*', copyOptions)
-    .pipe(gulp.dest(output));
-});
-
 gulp.task('copy-ie-js',  function() {
-  gulp.src(src + 'lib/placeholders.min.js', copyOptions)
-    .pipe(gulp.dest(output));
+  console.log("output", output);
+  var path = 'bower_components/placeholders/dist/';
+  gulp.src(path + 'placeholders.min.js', {base: path})
+    .pipe(gulp.dest(output + 'lib/'));
 });
 
 gulp.task('sass', function () {

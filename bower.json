@@ -1,0 +1,32 @@
+{
+  "name": "potato-flickr",
+  "description": "Test project for potato",
+  "main": "gulpfile.js",
+  "authors": [
+    "James Tarling"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "flickr",
+    "responsive",
+    "single-page-app"
+  ],
+  "homepage": "https://github.com/tarling/potato-flickr",
+  "moduleType": [
+    "amd"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "requirejs": "~2.1.22",
+    "placeholders": "~4.0.1"
+  }
+}

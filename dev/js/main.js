@@ -11,10 +11,10 @@ require.config({
         }
     }
     ,"paths": {
-      "angularjs": "../lib/angular/angular"
-      ,"angular-route": "../lib/angular/angular-route"
+      "angularjs": "../../bower_components/angular/angular"
+      ,"angular-route": "../../bower_components/angular-route/angular-route"
       ,"gapi" : "https://apis.google.com/js/platform"
-      ,"requireLib" : "../lib/require"
+      ,"requireLib" : "../../bower_components/requirejs/require"
     }
 });
 
@@ -30,11 +30,11 @@ require( [
   ], function(angular, constants) {
 
     angular.bootstrap(document, [constants.appName]);
-    
+
     /*
     activate the Placeholders polyfill
     if it was loaded (via an IE conditional tag)
     */
     if (window.Placeholders) window.Placeholders.enable();
-    
+
   });
